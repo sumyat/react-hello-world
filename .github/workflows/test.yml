@@ -1,0 +1,30 @@
+name: Tests for Next.js app
+
+on:
+  push:
+    branches:
+      - *
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  Tests:
+    name: Tests
+    runs-on: ubuntu-latest # GitHub Actions runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.14.0"
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Run Jest tests
+        run: npm test
